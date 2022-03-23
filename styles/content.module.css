@@ -1,0 +1,26 @@
+.addBtnStyle {
+  width: 250px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputGroupStyle {
+  width: 250px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.iconInputStyle{
+    background-color: white;
+    border-right: 0;
+}
+
+.inputStyle{
+    border-left: 0;
+}
+
+.iconsRight{
+    margin-left: 10px;
+}
