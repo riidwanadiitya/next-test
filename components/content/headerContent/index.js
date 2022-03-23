@@ -14,7 +14,8 @@ import * as FaIcons from 'react-icons/fa'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { addNewUser } from '../../../redux'
 
-function HeaderContent() {
+function HeaderContent(props) {
+  const { handleSearch, searchData } = props
   const dispatch = useDispatch()
   const [showModal, setshowModal] = useState(false)
   const [newUser, setNewUser] = useState({
@@ -61,7 +62,6 @@ function HeaderContent() {
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0]
-      console.log(URL.createObjectURL(img))
       setNewUser((prevData) => ({
         ...prevData,
         picture: { ...prevData.picture, large: URL.createObjectURL(img) },
@@ -89,7 +89,8 @@ function HeaderContent() {
             aria-label='Find Personnels'
             aria-describedby='btnGroupAddon'
             className={styles.inputStyle}
-            onChange={(e) => handleChange(e.target.name)}
+            value={searchData}
+            onChange={(e) => handleSearch(e.target.value)}
             name='search'
           />
         </InputGroup>
@@ -215,6 +216,18 @@ function HeaderContent() {
               />
               <label htmlFor='floatingPasswordCustom'>Email</label>
             </Form.Floating>
+            {newUser.picture.large !== '' && (
+              <div
+                style={{
+                  width: '100%',
+                  height: '20%',
+                  overflow: 'hidden',
+                }}
+                className='d-flex align-items-center justify-content-center'
+              >
+                <Image src={newUser.picture.large} width='50%' />
+              </div>
+            )}
             <Form.Control type='file' onChange={onImageChange} />
           </Modal.Body>
           <Modal.Footer>

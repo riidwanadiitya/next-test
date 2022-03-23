@@ -10,8 +10,7 @@ function FooterContent() {
     }
   return (
     <div
-      style={{ backgroundColor: 'red' }}
-      className='d-flex justify-content-center'
+      className='d-flex justify-content-center py-5 '
     >
       <div>
         <div className="px-4" onClick={(e)=>handlePage(e)} style={{cursor:"pointer"}}>Previous Page</div>

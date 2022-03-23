@@ -28,7 +28,6 @@ function CardPersonel(props) {
     setshowModal(true)
     const latest = data.dob.date
     const newDate = latest.slice(0, 10)
-    console.log(newDate)
     seteditBirthday(newDate)
 
     const date = new Date(latest)
@@ -51,7 +50,6 @@ function CardPersonel(props) {
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0]
-      console.log(URL.createObjectURL(img))
       setuserData((prevData) => ({
         ...prevData,
         picture: { ...prevData.picture, large: URL.createObjectURL(img) },
@@ -75,7 +73,7 @@ function CardPersonel(props) {
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
               />
-              <ul
+              {/* <ul
                 className='dropdown-menu d-flex flex-column justify-content-center px-3'
                 aria-labelledby='dropdownMenuButton1'
               >
@@ -92,7 +90,7 @@ function CardPersonel(props) {
                     <HiIcons.HiPencilAlt /> Edit
                   </span>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </Card.Header>
@@ -123,6 +121,22 @@ function CardPersonel(props) {
             <span className={styles.dataFill}>{userData.email}</span>
           </div>
         </Card.Body>
+        <Card.Footer className='d-flex justify-content-between'>
+          <Button
+            variant='success'
+            className={`${styles.cardBtn} d-flex justify-content-center`}
+            onClick={() => openModal()}
+          >
+            Edit
+          </Button>
+          <Button
+            variant='danger'
+            className={`${styles.cardBtn} d-flex justify-content-center`}
+            onClick={() => dispatch(deleteUser(data.email, index))}
+          >
+            delete
+          </Button>
+        </Card.Footer>
       </Card>
 
       <Modal
@@ -243,6 +257,18 @@ function CardPersonel(props) {
             />
             <label htmlFor='floatingPasswordCustom'>Email</label>
           </Form.Floating>
+          {userData.picture.large !== '' && (
+            <div
+              style={{
+                width: '100%',
+                height: '20%',
+                overflow: 'hidden',
+              }}
+              className='d-flex align-items-center justify-content-center'
+            >
+              <Image src={userData.picture.large} width='50%' />
+            </div>
+          )}
           <Form.Control type='file' onChange={onImageChange} />
         </Modal.Body>
         <Modal.Footer>
@@ -250,7 +276,7 @@ function CardPersonel(props) {
             variant='primary'
             onClick={() => {
               setshowModal(false)
-              console.log(userData)
+              dispatch(editUser())
             }}
           >
             Edit

@@ -25,10 +25,9 @@ export const fetchUsers = () => {
   return (dispatch) => {
     dispatch(fetchUserRequest)
     axios
-      .get(`https://randomuser.me/api/?results=2`)
+      .get(`https://randomuser.me/api/?results=3`)
       .then((response) => {
         const users = response.data.results
-        console.log(users)
         dispatch(fetchUserSuccess(users))
       })
       .catch((error) => {
@@ -45,18 +44,17 @@ export const addNewUser = (data) => {
   }
 }
 
-export const editUser = (data, index) => {
+export const editUser = () => {
   return {
     type: t.EDIT_USER,
-    payload: data,
-    datas: index,
   }
 }
 
-export const deleteUser = (data) => {
+export const deleteUser = (data, index) => {
   return {
     type: t.DELETE_USER,
     payload: data,
+    datas: index,
   }
 }
 

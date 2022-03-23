@@ -4,6 +4,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: teal;
+}
+
+.addBtnStyle:hover {
+  background-color: rgb(1, 95, 95);
 }
 
 .inputGroupStyle {
@@ -12,15 +17,15 @@
   margin-right: 10px;
 }
 
-.iconInputStyle{
-    background-color: white;
-    border-right: 0;
+.iconInputStyle {
+  background-color: white;
+  border-right: 0;
 }
 
-.inputStyle{
-    border-left: 0;
+.inputStyle {
+  border-left: 0;
 }
 
-.iconsRight{
-    margin-left: 10px;
+.iconsRight {
+  margin-left: 10px;
 }
